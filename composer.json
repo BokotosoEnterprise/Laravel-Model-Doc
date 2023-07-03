@@ -32,12 +32,12 @@
     },
     "autoload": {
         "psr-4": {
-            "romanzipp\\ModelDoc\\": "src"
+            "BoktosoEnterprise\\ModelDoc\\": "src"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "romanzipp\\ModelDoc\\Tests\\": "tests"
+            "BoktosoEnterprise\\ModelDoc\\Tests\\": "tests"
         }
     },
     "scripts": {
@@ -46,7 +46,7 @@
     "extra": {
         "laravel": {
             "providers": [
-                "romanzipp\\ModelDoc\\Providers\\ModelDocServiceProvider"
+                "BoktosoEnterprise\\ModelDoc\\Providers\\ModelDocServiceProvider"
             ]
         }
     },
