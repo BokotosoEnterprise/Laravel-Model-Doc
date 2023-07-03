@@ -8,21 +8,26 @@ use romanzipp\ModelDoc\Services\DocumentationGenerator;
 
 class GenerateModelDocumentationCommand extends Command
 {
-    protected $signature = 'model-doc:generate {--v}';
+    protected $signature = 'model-doc:generate {--modelClass= : Model Class to build.}';
+
+    protected $description = "Generate PHPDoc description based on the class.";
 
     public function handle(DocumentationGenerator $generator): void
     {
-        $models = $generator->collectModels();
+        if ($this->option('modelClass')) {
+            $model = resolve($this->option('modelClass'));
+            $models = collect([new $model(),]);
+        } else {
+            $models = $generator->collectModels();
+        }
 
         foreach ($models as $model) {
             try {
                 $generator->generate($model);
-
                 $this->info("Wrote {$model->getName()}");
             } catch (ModelDocumentationFailedException $exception) {
                 $this->warn("Failed {$model->getName()}: {$exception->getMessage()}");
-
-                if ($this->option('v')) {
+                if ($this->output->isVerbose()) {
                     $this->warn($exception);
                 }
             }

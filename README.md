@@ -1,9 +1,6 @@
 # Laravel Model PHPDoc Generator
 
-[![Latest Stable Version](https://img.shields.io/packagist/v/romanzipp/Laravel-Model-Doc.svg?style=flat-square)](https://packagist.org/packages/romanzipp/laravel-model-doc)
-[![Total Downloads](https://img.shields.io/packagist/dt/romanzipp/Laravel-Model-Doc.svg?style=flat-square)](https://packagist.org/packages/romanzipp/laravel-model-doc)
-[![License](https://img.shields.io/packagist/l/romanzipp/Laravel-Model-Doc.svg?style=flat-square)](https://packagist.org/packages/romanzipp/laravel-model-doc)
-[![GitHub Build Status](https://img.shields.io/github/actions/workflow/status/romanzipp/Laravel-Model-Doc/tests.yml?branch=master&label=tests&style=flat-square)](https://github.com/romanzipp/Laravel-Model-Doc/actions)
+Fork off of [romanzipp/Laravel-Model-Doc](https://github.com/romanzipp/Laravel-Model-Doc)
 
 Generate PHPDoc comments for Laravel Models including [**database columns**](https://laravel.com/docs/eloquent), [**relationships**](https://laravel.com/docs/eloquent-relationships), [**accessors**](https://laravel.com/docs/eloquent-mutators#accessors-and-mutators), [**query scopes**](https://laravel.com/docs/eloquent#query-scopes) and [**factories**](https://laravel.com/docs/eloquent-factories).
 
@@ -17,7 +14,7 @@ Generate PHPDoc comments for Laravel Models including [**database columns**](htt
 ## Installation
 
 ```
-composer require romanzipp/laravel-model-doc --dev
+composer require boktoso-enterprise/laravel-model-doc --dev
 ```
 
 ## Configuration
@@ -25,7 +22,7 @@ composer require romanzipp/laravel-model-doc --dev
 Copy configuration to config folder:
 
 ```
-php artisan vendor:publish --provider="romanzipp\ModelDoc\Providers\ModelDocServiceProvider"
+php artisan vendor:publish --provider="boktoso-enterprise\ModelDoc\Providers\ModelDocServiceProvider"
 ```
 
 ## Usage
@@ -143,7 +140,15 @@ See the [configuration file](config/model-doc.php) for more specific use cases.
 If you get an error when generating the documentation for a model, you can use the `--v` option to get more information about the error.
 
 ```
-php artisan model-doc:generate --v
+php artisan model-doc:generate -v
+```
+
+### Specify the Model to update
+
+If you get an error when generating the documentation for a model, you can use the `--v` option to get more information about the error.
+
+```
+php artisan model-doc:generate --model={modelClass}
 ```
 
 ### Custom database types
@@ -160,18 +165,6 @@ Here is an example for `enum` type mapping in `database.php` config file:
     ],
 ],
 ```
-
-## Features
-
-- [x] Generate `@property` tags from attributes
-- [x] Look for attributes type casts
-- [x] Do not generate attribute `@property` tag if accessor exists
-- [x] Generate `@method` tags from relationships
-- [x] Generate `@property` tags from relationships
-- [x] Generate `@property` tags from relationship counts
-- [x] Generate `@method` tags query scopes
-- [x] Generate `@property` tags from accessors
-- [ ] Only generate `@property-readonly` if accessor has no real attribute or mutator
 
 ## Testing
 
