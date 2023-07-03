@@ -1,9 +1,14 @@
 {
-    "name": "romanzipp/laravel-model-doc",
+    "name": "boktoso-enterprise/laravel-model-doc",
     "description": "Laravel Model PHPDoc Generator",
     "license": "MIT",
     "type": "library",
     "authors": [
+        {
+            "name": "Robert Hayman",
+            "email": "rhayman@boktoso.com",
+            "homepage": "https://boktosoenterprise.com/"
+        },
         {
             "name": "romanzipp",
             "email": "ich@ich.wtf",
