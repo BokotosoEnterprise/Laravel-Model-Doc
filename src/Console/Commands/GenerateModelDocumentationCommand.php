@@ -1,10 +1,10 @@
 <?php
 
-namespace romanzipp\ModelDoc\Console\Commands;
+namespace BoktosoEnterprise\ModelDoc\Console\Commands;
 
 use Illuminate\Console\Command;
-use romanzipp\ModelDoc\Exceptions\ModelDocumentationFailedException;
-use romanzipp\ModelDoc\Services\DocumentationGenerator;
+use BoktosoEnterprise\ModelDoc\Exceptions\ModelDocumentationFailedException;
+use BoktosoEnterprise\ModelDoc\Services\DocumentationGenerator;
 
 class GenerateModelDocumentationCommand extends Command
 {

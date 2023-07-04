@@ -1,6 +1,6 @@
 <?php
 
-namespace romanzipp\ModelDoc\Services\Tags;
+namespace BoktosoEnterprise\ModelDoc\Services\Tags;
 
 use phpowermove\docblock\tags\AbstractDescriptionTag;
 

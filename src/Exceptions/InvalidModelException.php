@@ -1,6 +1,6 @@
 <?php
 
-namespace romanzipp\ModelDoc\Exceptions;
+namespace BoktosoEnterprise\ModelDoc\Exceptions;
 
 class InvalidModelException extends \Exception
 {

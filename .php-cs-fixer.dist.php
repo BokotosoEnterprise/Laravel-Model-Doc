@@ -1,8 +1,8 @@
 <?php
 
-return romanzipp\Fixer\Config::make()
+return BoktosoEnterprise\Fixer\Config::make()
     ->in(__DIR__)
     ->preset(
-        new romanzipp\Fixer\Presets\PrettyLaravel()
+        new BoktosoEnterprise\Fixer\Presets\PrettyLaravel()
     )
     ->out();

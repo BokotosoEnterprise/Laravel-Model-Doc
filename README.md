@@ -122,7 +122,7 @@ You can set a custom base path for the generator using the `usePath` static meth
 
 ```php
 use Illuminate\Support\ServiceProvider;
-use romanzipp\ModelDoc\Services\DocumentationGenerator;
+use BoktosoEnterprise\ModelDoc\Services\DocumentationGenerator;
 
 class AppServiceProvider extends ServiceProvider
 {

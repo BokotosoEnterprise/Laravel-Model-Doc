@@ -1,9 +1,9 @@
 <?php
 
-namespace romanzipp\ModelDoc\Services\Objects;
+namespace BoktosoEnterprise\ModelDoc\Services\Objects;
 
 use Illuminate\Database\Eloquent\Model as IlluminateModel;
-use romanzipp\ModelDoc\Exceptions\InvalidModelException;
+use BoktosoEnterprise\ModelDoc\Exceptions\InvalidModelException;
 use Symfony\Component\Finder\SplFileInfo;
 
 final class Model extends AbstractDocumentableClass

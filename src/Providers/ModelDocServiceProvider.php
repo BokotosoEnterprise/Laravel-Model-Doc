@@ -1,11 +1,11 @@
 <?php
 
-namespace romanzipp\ModelDoc\Providers;
+namespace BoktosoEnterprise\ModelDoc\Providers;
 
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Support\ServiceProvider;
-use romanzipp\ModelDoc\Console\Commands\GenerateModelDocumentationCommand;
-use romanzipp\ModelDoc\Services\DocumentationGenerator;
+use BoktosoEnterprise\ModelDoc\Console\Commands\GenerateModelDocumentationCommand;
+use BoktosoEnterprise\ModelDoc\Services\DocumentationGenerator;
 
 class ModelDocServiceProvider extends ServiceProvider
 {

@@ -1,9 +1,9 @@
 <?php
 
-namespace romanzipp\ModelDoc\Services\Objects;
+namespace BoktosoEnterprise\ModelDoc\Services\Objects;
 
 use Illuminate\Database\Eloquent\Factories\Factory as IlluminateFactory;
-use romanzipp\ModelDoc\Exceptions\InvalidModelException;
+use BoktosoEnterprise\ModelDoc\Exceptions\InvalidModelException;
 use Symfony\Component\Finder\Finder;
 use Symfony\Component\Finder\SplFileInfo;
 

@@ -1,6 +1,6 @@
 <?php
 
-namespace romanzipp\ModelDoc\Services;
+namespace BoktosoEnterprise\ModelDoc\Services;
 
 use Doctrine\DBAL\Exception as DoctrineException;
 use Doctrine\DBAL\Schema\Column;
@@ -12,12 +12,12 @@ use Illuminate\Database\Eloquent\Relations;
 use Illuminate\Support\Str;
 use phpowermove\docblock\tags\MethodTag;
 use phpowermove\docblock\tags\PropertyTag;
-use romanzipp\ModelDoc\Exceptions\InvalidModelException;
-use romanzipp\ModelDoc\Exceptions\ModelDocumentationFailedException;
-use romanzipp\ModelDoc\Services\Docblock\Docblock;
-use romanzipp\ModelDoc\Services\Objects\AbstractDocumentableClass;
-use romanzipp\ModelDoc\Services\Objects\Model;
-use romanzipp\ModelDoc\Services\Tags\MixinTag;
+use BoktosoEnterprise\ModelDoc\Exceptions\InvalidModelException;
+use BoktosoEnterprise\ModelDoc\Exceptions\ModelDocumentationFailedException;
+use BoktosoEnterprise\ModelDoc\Services\Docblock\Docblock;
+use BoktosoEnterprise\ModelDoc\Services\Objects\AbstractDocumentableClass;
+use BoktosoEnterprise\ModelDoc\Services\Objects\Model;
+use BoktosoEnterprise\ModelDoc\Services\Tags\MixinTag;
 use Symfony\Component\Finder\Finder;
 
 class DocumentationGenerator
@@ -33,7 +33,7 @@ class DocumentationGenerator
     }
 
     /**
-     * @return \Generator<\romanzipp\ModelDoc\Services\Objects\Model>
+     * @return \Generator<\BoktosoEnterprise\ModelDoc\Services\Objects\Model>
      */
     public function collectModels(): \Generator
     {
@@ -62,9 +62,9 @@ class DocumentationGenerator
     }
 
     /**
-     * @param \romanzipp\ModelDoc\Services\Objects\Model $model
+     * @param \BoktosoEnterprise\ModelDoc\Services\Objects\Model $model
      *
-     * @throws \romanzipp\ModelDoc\Exceptions\ModelDocumentationFailedException
+     * @throws \BoktosoEnterprise\ModelDoc\Exceptions\ModelDocumentationFailedException
      */
     public function generate(Model $model): void
     {
@@ -75,11 +75,11 @@ class DocumentationGenerator
     }
 
     /**
-     * @param \romanzipp\ModelDoc\Services\Objects\Model $model
+     * @param \BoktosoEnterprise\ModelDoc\Services\Objects\Model $model
      *
-     * @throws \romanzipp\ModelDoc\Exceptions\ModelDocumentationFailedException
+     * @throws \BoktosoEnterprise\ModelDoc\Exceptions\ModelDocumentationFailedException
      *
-     * @return \romanzipp\ModelDoc\Services\Docblock\Docblock
+     * @return \BoktosoEnterprise\ModelDoc\Services\Docblock\Docblock
      */
     public function generateModelDocBlock(Model $model): Docblock
     {
@@ -181,7 +181,7 @@ class DocumentationGenerator
     }
 
     /**
-     * @param \romanzipp\ModelDoc\Services\Objects\Model $model
+     * @param \BoktosoEnterprise\ModelDoc\Services\Objects\Model $model
      *
      * @return array|\phpowermove\docblock\tags\MethodTag[]
      */
@@ -411,10 +411,10 @@ class DocumentationGenerator
     }
 
     /**
-     * @param \romanzipp\ModelDoc\Services\Objects\AbstractDocumentableClass $model
-     * @param \romanzipp\ModelDoc\Services\Docblock\Docblock $docblock
+     * @param \BoktosoEnterprise\ModelDoc\Services\Objects\AbstractDocumentableClass $model
+     * @param \BoktosoEnterprise\ModelDoc\Services\Docblock\Docblock $docblock
      *
-     * @throws \romanzipp\ModelDoc\Exceptions\ModelDocumentationFailedException
+     * @throws \BoktosoEnterprise\ModelDoc\Exceptions\ModelDocumentationFailedException
      */
     private function writeDoc(AbstractDocumentableClass $model, Docblock $docblock): void
     {
@@ -468,7 +468,7 @@ class DocumentationGenerator
      * @param \ReflectionClass<\Illuminate\Database\Eloquent\Model> $reflectionClass
      * @param \Illuminate\Database\Eloquent\Model $model
      *
-     * @throws \romanzipp\ModelDoc\Exceptions\ModelDocumentationFailedException
+     * @throws \BoktosoEnterprise\ModelDoc\Exceptions\ModelDocumentationFailedException
      *
      * @return \Generator<\phpowermove\docblock\tags\PropertyTag>
      */
@@ -551,7 +551,7 @@ class DocumentationGenerator
      * @param \Illuminate\Database\Eloquent\Model $model
      * @param \Doctrine\DBAL\Schema\Column $column
      *
-     * @throws \romanzipp\ModelDoc\Exceptions\ModelDocumentationFailedException
+     * @throws \BoktosoEnterprise\ModelDoc\Exceptions\ModelDocumentationFailedException
      *
      * @return array<string>
      */
