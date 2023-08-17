@@ -25,7 +25,7 @@ class DocumentationGenerator
     /**
      * @var callable|null
      */
-    public static $pathCallback = null;
+    public static $pathCallback;
 
     public static function usePath(callable $pathCallback): void
     {
@@ -110,8 +110,20 @@ class DocumentationGenerator
 
         // 2. Generate properties from model accessors
 
-        if (true === config('model-doc.accessors.enabled')) {
+        if (true === config('model-doc.accessors.enabled') && ! $reflectionClass->isAbstract()) {
             foreach ($this->getModelAccessors($reflectionClass) as $property) {
+                $tags[] = $property;
+            }
+
+            // Generate properties from model accessors when using Attribute::make()
+            try {
+                /** @var \Illuminate\Database\Eloquent\Model $instance */
+                $instance = $reflectionClass->newInstance();
+            } catch (\ReflectionException $exception) {
+                throw new ModelDocumentationFailedException('Can not create model instance', 0, $exception);
+            }
+
+            foreach ($this->getModelAttributesCasts($reflectionClass, $instance) as $property) {
                 $tags[] = $property;
             }
         }
@@ -227,6 +239,51 @@ class DocumentationGenerator
             $tag->setType($returnType);
 
             yield $tag;
+        }
+    }
+
+    /**
+     * @param \ReflectionClass<\Illuminate\Database\Eloquent\Model> $reflectionClass
+     * @param \Illuminate\Database\Eloquent\Model $model
+     *
+     * @return \Generator<\phpowermove\docblock\tags\PropertyTag>
+     */
+    public function getModelAttributesCasts(\ReflectionClass $reflectionClass, IlluminateModel $model): \Generator
+    {
+        foreach ($reflectionClass->getMethods() as $method) {
+            if (\Illuminate\Database\Eloquent\Casts\Attribute::class != $method->getReturnType()) {
+                continue;
+            }
+
+            if ( ! $method->isPublic()) {
+                $method->setAccessible(true);
+            }
+
+            /** @var ?callable $get */
+            $get = $method->invoke($model)?->get;
+
+            if (null === $get) {
+                continue;
+            }
+
+            $camelCaseTag = new PropertyTag();
+            $camelCaseTag->setVariable($methodName = $method->getName());
+
+            $returnType = 'mixed';
+
+            $callableFunction = new \ReflectionFunction($get);
+
+            if (($reflectionType = $callableFunction->getReturnType()) !== null && ($typeReturn = self::getReflectionTypeDocReturn($reflectionType))) {
+                $returnType = $typeReturn;
+            }
+
+            $camelCaseTag->setType($returnType);
+
+            $snakeCaseTag = clone $camelCaseTag;
+            $snakeCaseTag->setVariable(Str::snake($methodName));
+
+            yield $camelCaseTag;
+            yield $snakeCaseTag;
         }
     }
 
@@ -501,6 +558,9 @@ class DocumentationGenerator
          * @var \Doctrine\DBAL\Schema\AbstractSchemaManager $schemaManager
          */
         $schemaManager = $connection->getDoctrineSchemaManager();
+
+        // Fix: "Doctrine\DBAL\Exception: Unknown database type enum requested, Doctrine\DBAL\Platforms\MariaDb1027Platform may not support it."
+        $schemaManager->getDatabasePlatform()->registerDoctrineTypeMapping('enum', 'string');
 
         try {
             $tableColumns = $schemaManager->listTableColumns($model->getTable());
