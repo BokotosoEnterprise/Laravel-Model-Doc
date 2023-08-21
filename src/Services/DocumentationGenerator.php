@@ -62,11 +62,11 @@ class DocumentationGenerator
     }
 
     /**
-     * @param \BoktosoEnterprise\ModelDoc\Services\Objects\Model $model
+     * @param $model
      *
      * @throws \BoktosoEnterprise\ModelDoc\Exceptions\ModelDocumentationFailedException
      */
-    public function generate(Model $model): void
+    public function generate($model): void
     {
         $modelDoc = $this->generateModelDocBlock($model);
         if ( ! $modelDoc->isEmpty()) {
@@ -75,13 +75,13 @@ class DocumentationGenerator
     }
 
     /**
-     * @param \BoktosoEnterprise\ModelDoc\Services\Objects\Model $model
+     * @param $model
      *
      * @throws \BoktosoEnterprise\ModelDoc\Exceptions\ModelDocumentationFailedException
      *
      * @return \BoktosoEnterprise\ModelDoc\Services\Docblock\Docblock
      */
-    public function generateModelDocBlock(Model $model): Docblock
+    public function generateModelDocBlock($model): Docblock
     {
         $tags = [];
 
@@ -193,11 +193,11 @@ class DocumentationGenerator
     }
 
     /**
-     * @param \BoktosoEnterprise\ModelDoc\Services\Objects\Model $model
+     * @param $model
      *
      * @return array|\phpowermove\docblock\tags\MethodTag[]
      */
-    public function getModelFactoryMethods(Model $model): array
+    public function getModelFactoryMethods($model): array
     {
         $factory = $model->getFactory();
         if (null === $factory) {
